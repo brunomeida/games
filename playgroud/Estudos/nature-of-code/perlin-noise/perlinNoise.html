@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Canvas Boilerplate | Chris Courses</title>
+    <style type="text/css">
+        canvas {
+            border: 1px solid black;
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+    </style>
+  </head>
+  <body>
+    <canvas id="screen"></canvas>
+    <script>
+        let t = 0;
+        let screen;
+        let canvas;
+        
+        document.addEventListener('mousedown',handleMouseDown);
+
+        function handleMouseDown(event) {
+            animate();
+        }
+
+        function buildCanvasFullPage(){
+            var screen = document.querySelector('canvas')
+            screen.width = window.innerWidth
+            screen.height = window.innerHeight
+            canvas = screen.getContext('2d')
+            canvas.width = window.innerWidth
+            canvas.height = window.innerHeight
+        }
+
+        function setup(){
+            randomWalker = new RandomWalker(500,150,10);
+        }
+
+        class RandomWalker {
+            constructor(x, y, radius){
+                this.canvas = canvas;
+                this.x = x;
+                this.y = y;
+                this.radius = radius;
+                this.START_ANGLE = 0;
+                this.END_ANGLE = 2 * Math.PI;
+                this.render();
+
+            }
+            render(){
+                canvas.beginPath()
+                canvas.arc(this.x,this.y,this.radius,this.START_ANGLE,this.END_ANGLE)
+                canvas.stroke();
+            }
+
+            walk(x, y){
+                this.x += x;
+                this.y+= y;
+                this.render();
+            }
+
+            animate(random) {
+                console.log(x)
+                var x = noise(t)
+                map()
+                this.render()
+            }
+
+        }
+
+        function noise(){
+            return Math.random();
+        }
+    
+        
+        buildCanvasFullPage();
+        setup();
+        animate();
+        
+        function animate() {
+            requestAnimationFrame(animate)
+            //canvas.clearRect(0, 0, canvas.width, canvas.height)
+            randomWalker.animate(true)
+        }
+    </script>
+  </body>
+</html>

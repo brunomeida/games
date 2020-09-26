@@ -1,0 +1,128 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Meu primeiro jogo multiplayer. Sera sao 4 da manha</title>
+
+        <!-- Como se fosse o css se pah-->
+        <style>
+            #screen {
+                border: 10px solid #CCC;
+                image-rendering: pixelated;
+                image-rendering: crisp-edges;                
+                image-rendering: -moz-crisp-edges;
+                width: 400px;
+                height: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="screen" width="11" height="11"></canvas>
+        
+        <!-- Como se fosse o javascript se pah-->   
+        <script>
+            const screen = document.getElementById("screen")
+            const context = screen.getContext('2d')
+
+            const game = {
+                forts: {
+                    'fort0': { x: 0, y: 0},
+                    'fort1': { x: 0, y: 10},
+                    'fort2': { x: 10, y: 0},
+                    'fort3': { x: 10, y: 10}
+                },
+
+                outlanders:{
+                    "outlander0": {x: 3, y: 0},
+                    "outlander1": {x: 4, y: 0},
+                    "outlander2": {x: 5, y: 0},
+                    "outlander3": {x: 5, y: 1},
+                    "outlander4": {x: 6, y: 0},
+                    "outlander5": {x: 7, y: 0},
+
+                    "outlander6": {x: 0, y: 3},
+                    "outlander7": {x: 0, y: 4},
+                    "outlander8": {x: 0, y: 5},
+                    "outlander9": {x: 1, y: 5},
+                    "outlander10": {x: 0, y:6},
+                    "outlander11": {x: 0, y:7},
+
+                    "outlander12": {x: 10, y: 3},
+                    "outlander13": {x: 10, y: 4},
+                    "outlander14": {x: 9, y: 5},
+                    "outlander15": {x: 10, y: 5},
+                    "outlander16": {x: 10, y: 6},
+                    "outlander17": {x: 10, y: 7},
+
+                    "outlander18": {x: 3, y:10},
+                    "outlander19": {x: 4, y:10},
+                    "outlander20": {x: 5, y: 9},
+                    "outlander21": {x: 5, y:10},
+                    "outlander22": {x: 6, y:10},
+                    "outlander23": {x: 7, y:10}
+                },
+
+                vikings: {
+                    "king": {x: 5, y: 5},
+                    "viking1": {x: 3, y: 5},
+                    "viking2": {x: 4, y: 5},
+                    "viking3": {x: 6, y: 5},
+                    "viking4": {x: 7, y: 5},
+
+                    "viking5": {x: 5, y: 3},
+                    "viking6": {x: 5, y: 4},
+                    "viking7": {x: 5, y: 6},
+                    "viking8": {x: 5, y: 7},
+
+                    "viking9": {x: 4, y: 4},
+                    "viking10": {x: 6, y: 4},
+                    "viking11": {x: 4, y: 6},
+                    "viking12": {x: 6, y: 6},
+                }
+                
+            }
+
+            document.addEventListener('keydown', handleKeydown)
+            document.addEventListener('click', handleKeydown)
+
+            function handleKeydown(event) {
+                console.log(event)
+                const keyPressed = event.key
+
+                if(keyPressed === 'ArrowUp') {
+                    console.log('Up')
+                    return
+                }
+            }
+
+            renderScreen()
+
+            function renderScreen() {
+                context.fillStyle = 'white'
+                context.clearRect(0,0,10,10)
+
+            for (const fortId in game.forts) {
+                const fort = game.forts[fortId]
+                context.fillStyle = 'brown'
+                context.fillRect(fort.x, fort.y, 1, 1)
+            }
+            
+            for (const outlanderId in game.outlanders) {
+                const outlander = game.outlanders[outlanderId]
+                context.fillStyle = 'black'
+                context.fillRect(outlander.x, outlander.y, 1, 1)
+            }
+
+            for (const vikingId in game.vikings) {
+                const viking = game.vikings[vikingId]
+                context.fillStyle = 'green'
+                context.fillRect(viksrc="webgl-demo.js"ing.x, viking.y, 1, 1)
+            }            
+
+
+             requestAnimationFrame(renderScreen)
+            }
+
+        </script>
+
+    </body>
+</html>
